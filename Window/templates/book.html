@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>내 책장 확인</title>
+    <nav>
+        <ul class = "menu">
+            <li><img src="static/logo.png"></li>
+            <li><a href="{{url_for('main', select='intro')}}">초기화면</a></li>
+            <li><a href="{{url_for('main', select='book')}}">내 책장 확인</a></li>
+            <li><a href="{{url_for('main', select='graph')}}">책장 환경 확인</a></li>
+            <li><a href="{{url_for('main', select='data')}}">책 데이터 수정</a></li>
+        </ul>
+    </nav>
+    <link href="static/bookData.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript">
+        const getRandomRGB = () => `rgb( ${new Array(3).fill().map(v => Math.random() * 255).join(", ")} )`;
+
+        function openModal(button){
+            tr = button.parentNode.parentNode;
+            modal = document.getElementById("modal");
+            modal.style.display="block";
+
+            canvas = document.getElementById("imgCanvas");
+            context = canvas.getContext("2d");
+            img = new Image();
+            img.onload = function () {
+                context.drawImage(img, 0, 0, 360, 640);
+            }
+            img.src = 'static/pic/' + tr.children[1].innerText + '.jpg';
+	    }
+
+        function closeModal(){
+            document.getElementById("modal").style.display="none";
+        }
+
+        function draw() {
+            var canvas = document.getElementById("canvas");
+            var arr = JSON.parse('{{len | tojson | safe}}');
+
+            if (canvas.getContext) {
+                var ctx = canvas.getContext("2d");
+                var gra = ctx.createLinearGradient(0,0,0,canvas.height);
+                gra.addColorStop(0, '#b34903');
+                gra.addColorStop(1, '#6b2900');
+
+                ctx.fillStyle = gra;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                var beforex = 10;
+                var len = 0;
+
+                for(var key in arr){
+                    len = arr[key] * 10;
+                    ctx.fillStyle = getRandomRGB();
+                    ctx.strokeRect(beforex, 10, len, 130);
+                    ctx.fillRect(beforex, 10, len, 130);
+                    ctx.strokeText((parseInt(key) + 1).toString(), beforex + len / 2, 75);
+                    beforex += (10 + len);
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="draw();">
+<section>
+    <h1>내 책장 현황</h1>
+    <p>책 현황을 확인할 수 있습니다.</p>
+
+    <div id="modal">
+        <div class="modal_content">
+            <canvas id="imgCanvas" width="360" height="640"></canvas>
+            <button type="button" id="modal_close_btn" onclick="closeModal();">닫기</button>
+        </div>
+        <div class="modal_layer"></div>
+    </div>
+
+    <canvas id="canvas" width="1000" height="150" style="border: 1px solid black"></canvas><br>
+    <button onclick="draw();">캔버스 갱신</button>
+
+    <table> 
+        <thead>
+            <td>번호</td>
+            <td>제목</td>
+            <td>출판사</td>
+            <td>지은이</td>
+            <td>두께</td>
+            <td>메모</td>
+            <td>사진 확인</td>
+        </thead>
+        <tbody>
+            {% for name in title : %}
+            <tr>
+            <td>{% print(loop.index) %}</td>
+            <td>{% print(name) %}</td>
+            <td>{% print(publisher[loop.index0]) %}</td>
+            <td>{% print(writer[loop.index0]) %}</td>
+            <td>{% print(len[loop.index0]) %}</td>
+            <td>{% print(memo[loop.index0]) %}</td>
+            <td>
+                <button type="button" onclick="openModal(this);">사진</button>
+            </td>
+            </tr>
+            {% endfor %}        
+        </tbody>
+    </table>
+</section>
+</body>
+</html>

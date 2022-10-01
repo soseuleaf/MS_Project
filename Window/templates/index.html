@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>초기화면</title>
+    <nav>
+        <ul class = "menu">
+            <li><img src="static/logo.png"></li>
+            <li><a href="{{url_for('main', select='intro')}}">초기화면</a></li>
+            <li><a href="{{url_for('main', select='book')}}">내 책장 확인</a></li>
+            <li><a href="{{url_for('main', select='graph')}}">책장 환경 확인</a></li>
+            <li><a href="{{url_for('main', select='data')}}">책 데이터 수정</a></li>
+        </ul>
+    </nav>
+    <link href="static/index.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<section>
+    <img src="static/main_pic.png" width = "50%">
+    <h1>스마트 도서 관리</h1>
+    <p>스마트 도서 관리는 사용자들의 소중한 자산인 책을 보호 및 관리하게 편하게 해주는 서비스 입니다.</p>
+    <h3>메뉴 설명</h3>
+    <p>초기화면: 해당 화면입니다.</p>
+    <p>내 책장 확인: 책장의 현 상황을 시각적으로 확인합니다.</p>
+    <p>책장 환경 확인: 책장의 환경을 그래프로 확인합니다.</p>
+    <p>책 데이터 수정: 저장된 데이터를 수정합니다.</p>
+    <p style="text-align: right;">1771059 김준수 제작.</p>
+</section>
+</body>
+</html>

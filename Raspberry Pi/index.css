@@ -1,0 +1,56 @@
+@font-face {
+            font-family: 'InfinitySans-RegularA1';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-RegularA1.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'NanumBarunGothic';
+            font-style: normal;
+            font-weight: 400;
+            src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+            src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+        }
+
+        * {
+            font-family: 'NanumBarunGothic';
+        }
+
+        nav{
+            width: 200px;
+            height: 100%;
+            background-color: #eee;
+            border-right: 1px solid #ddd;
+            position: fixed;
+            font-family: 'InfinitySans-RegularA1';
+        }
+
+        ul{
+            list-style: none;
+            padding-inline-start: 10px;
+        }
+
+        .menu img{
+            text-align: center;
+            width: 100%;
+        }
+
+        .menu li a {
+            height: 30px;
+            line-height: 30px;
+            display: block;
+            padding: 10px 20px;
+            font-size: 20px;
+            text-decoration: none;
+            color: #111;
+        }
+
+        .menu li a:hover{
+            background-color: #191970;
+            color: white;
+        }
+
+        section{
+            padding: 20px 20px 20px 220px;
+        }
